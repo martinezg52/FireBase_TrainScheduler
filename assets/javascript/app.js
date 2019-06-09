@@ -1,23 +1,24 @@
-//Initialize Firebase
-
 $(document).ready(function() {
 
-var config = {
-    apiKey: "AIzaSyBemrO8C4qMXAEqaHdWB9D9H8pa7ewMTrE",
-    authDomain: "trainscheduler-18d12.firebaseapp.com",
-    databaseURL: "https://trainscheduler-18d12.firebaseio.com/",
-    projectId: "trainscheduler-18d12",
-    storageBucket: "gs://trainscheduler-18d12.appspot.com",
-};
-
-firebase.initializeApp(config);
-
-var database = firebase.database();
-
-//setting up add train button
+  var firebaseConfig = {
+    apiKey: "AIzaSyCow7d7sWNICa1CDI5_XUPYLKMDcJlRi6o",
+    authDomain: "geotrainscheduler.firebaseapp.com",
+    databaseURL: "https://geotrainscheduler.firebaseio.com",
+    projectId: "geotrainscheduler",
+    storageBucket: "geotrainscheduler.appspot.com",
+    messagingSenderId: "400760475418",
+    appId: "1:400760475418:web:e1bb7d6a94c98273"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+    var database = firebase.database();
+  
+   
+  //setting up add train button
 
 $("#add-train-btn").on("click", function(event) {
-    event.preventDefault();
+  event.preventDefault();
 
 //Grabbing user input
 
@@ -29,10 +30,10 @@ var trainFrequency = $("#freq-input").val().trim();
 //Creating a temporary object to hold the new train data
 
 var newTrain = {
-    name: trainName,
-    destination: trainDest,
-    start: firstTrain,
-    frequency: trainFrequency
+  name: trainName,
+  destination: trainDest,
+  start: firstTrain,
+  frequency: trainFrequency
 };
 
 //Method to upload the train data to the database
@@ -56,7 +57,7 @@ $("#freq-input").val("");
 
 database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
-    console.log(childSnapshot.val());
+  console.log(childSnapshot.val());
 
 //Storing everything to their variables
 
@@ -69,7 +70,7 @@ var trainFrequency = childSnapshot.val().frequency;
 var trainFrequency;
 
 // Time is to be entered on the entry form
-  var firstTime = 0;
+var firstTime = 0;
 
 var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
 console.log(firstTimeConverted);
